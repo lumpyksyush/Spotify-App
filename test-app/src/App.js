@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import SpotifyWebApi from 'spotify-web-api-js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const spotifyApi = new SpotifyWebApi();
+
+class App extends React.Component {
+	constructor() {
+		super();
+		const params = this.getHashParams();
+		const token = params.access_token;
+		if (token) {
+			spotifyApi.setAccessToken(token);
+		}
+		this.state = {
+			loggedIn: token ? true : false,
+			nowPlaying: { name: 'Not Checked', albumArt: '' },
+		};
+	}
+	getHashParams() {
+		var hashParams = {};
+		var e,
+			r = /([^&;=]+)=?([^&;]*)/g,
+			q = window.location.hash.substring(1);
+		e = r.exec(q);
+		while (e) {
+			hashParams[e[1]] = decodeURIComponent(e[2]);
+			e = r.exec(q);
+		}
+		return hashParams;
+	}
+  
+	render() {
+		return (
+			<div className="App">
+				<a href="http://localhost:8888"> Login to Spotify </a>
+			</div>
+		);
+	}
 }
 
 export default App;
