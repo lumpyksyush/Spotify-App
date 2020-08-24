@@ -2,22 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const AlbumItem = ({
-	image,
-	title,
-	artist,
-	link,
-	tracksCount,
-	releaseDate,
-} = {}) => {
+	album: { image, name, artists, link, tracksCount, releaseDate },
+	key,
+}) => {
 	return (
-		<figure className="album-item">
-			<img src={image} alt={title} />
+		<figure className="album-item" key={key}>
+			<img src={image} alt={name} />
 			<figcaption className="album-item__info">
 				<p>
-					<a href={link}>{title}</a> by {artist}
+					<a href={link}>{name}</a> by {artists}
 				</p>
 				<p>Tracks total: {tracksCount}</p>
-				<p>Released in {releaseDate}</p>
+				<p>Released in: {releaseDate}</p>
 			</figcaption>
 		</figure>
 	);
@@ -25,11 +21,13 @@ export const AlbumItem = ({
 
 AlbumItem.propTypes = {
 	album: PropTypes.shape({
-		title: PropTypes.string,
+		name: PropTypes.string,
 		image: PropTypes.string,
 		link: PropTypes.string,
-		artist: PropTypes.array,
+		artists: PropTypes.array,
 		tracksCount: PropTypes.number,
 		releaseDate: PropTypes.number,
 	}),
 };
+
+export default AlbumItem;

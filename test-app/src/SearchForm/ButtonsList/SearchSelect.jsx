@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SearchSelect = ({ name, options }) => {
+const SearchSelect = ({ name, options }) => {
 	return (
 		<select name={name}>
 			{options.map((option, id) => (
@@ -11,3 +11,5 @@ export const SearchSelect = ({ name, options }) => {
 		</select>
 	);
 };
+
+export default SearchSelect;

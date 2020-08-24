@@ -2,29 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PlaylistItem = ({
-	image,
-	title,
-	link,
-	tracksCount,
-	owner: { ownerName, ownerLink },
-} = {}) => {
+	playlist: {
+		image,
+		name,
+		link,
+		owner: { ownerName, ownerLink },
+		tracksCount,
+	},
+	key,
+}) => {
 	return (
-		<div>
-			<img src={image} alt={title} />
-			<p>
-				Title: <a href={link}>{title}</a>
-			</p>
-			<p>
-				Owner: <a href={ownerLink}>{ownerName}</a>
-			</p>
-			<p> Tracks Count: {tracksCount}</p>
-		</div>
+		<figure className="playlist-item" key={key}>
+			<img src={image} alt={name} />
+			<figcaption className="playlist-item__info">
+				<p>
+					Name: <a href={link}>{name}</a>
+				</p>
+				<p>
+					Owner: <a href={ownerLink}>{ownerName}</a>
+				</p>
+				<p> Tracks Count: {tracksCount}</p>
+			</figcaption>
+		</figure>
 	);
 };
 
 PlaylistItem.propTypes = {
 	playlist: PropTypes.shape({
-		title: PropTypes.string,
+		name: PropTypes.string,
 		image: PropTypes.string,
 		link: PropTypes.string,
 		tracksCount: PropTypes.number,
@@ -34,3 +39,5 @@ PlaylistItem.propTypes = {
 		}),
 	}),
 };
+
+export default PlaylistItem;

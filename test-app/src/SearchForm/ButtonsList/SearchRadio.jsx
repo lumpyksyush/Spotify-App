@@ -7,3 +7,4 @@ export const SearchRadio = ({ value, name }) => {
 		</div>
 	);
 };
+export default SearchRadio;
