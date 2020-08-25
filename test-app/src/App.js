@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
 import AlbumList from './Albums/AlbumList';
 import ArtistList from './Artists/ArtistList';
@@ -6,13 +6,13 @@ import Playlist from './Playlists/Playlist';
 import TrackList from './Track/TrackList';
 import SearchForm from './SearchForm/SearchForm';
 import Header from './Header/Header';
-import { ALBUMS, ARTIST, PLAYLIST, TRACK } from './utils/MOCK_DATA';
+import { ALBUMS, ARTIST, PLAYLIST, TRACK } from './utils/mockData';
 import 'antd/dist/antd.css';
 import './App.css';
 
 const spotifyApi = new SpotifyWebApi();
 
-class App extends React.Component {
+class App extends Component {
 	constructor() {
 		super();
 		const params = this.getHashParams();
@@ -46,7 +46,7 @@ class App extends React.Component {
 					Artists: <ArtistList artists={ARTIST.artists} />
 					Tracks: <TrackList tracks={TRACK} />
 					Playlists: <Playlist playlists={PLAYLIST} />
-					Albums(search Eminem) <AlbumList albums={ALBUMS} />
+					Albums: <AlbumList albums={ALBUMS} />
 				</main>
 			</div>
 		);

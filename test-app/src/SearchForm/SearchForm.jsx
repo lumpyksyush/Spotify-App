@@ -1,11 +1,11 @@
-import React from 'react';
-import { SEARCH_LIMITS, SEARCH_TYPE } from '../../utils/const';
+import React, { Component } from 'react';
+import { searchType, searchLimits } from '../utils/consts';
 import SearchField from './SearchField';
 import SearchSelect from './ButtonsList/SearchSelect';
 import SearchRadioButton from './ButtonsList/SearchRadioButton';
 import SearchButton from './ButtonsList/SearchButton';
 
-export default class SearchForm extends React.Component {
+export default class SearchForm extends Component {
 	constructor(props) {
 		super(props);
 
@@ -17,8 +17,17 @@ export default class SearchForm extends React.Component {
 		};
 	}
 
-	//search() method
-	//changeSearchValue() method
+	search() {
+		alert(this.state.searchValue);
+	}
+
+	changeSearchValue(event) {
+		this.setState(() => {
+			return {
+				[event.target.searchValue]: event.target.value,
+			};
+		});
+	}
 
 	render() {
 		return (
@@ -27,11 +36,16 @@ export default class SearchForm extends React.Component {
 					searchValue={this.state.searchValue}
 					changeSearchValue={this.changeSearchValue}
 				/>
-				<SearchSelect name="type" optionsList={SEARCH_TYPE} />
-				{SEARCH_LIMITS.map((option) => (
-					<SearchRadioButton name="limit" label={option} value={option} />
+				<SearchSelect name="type" optionsList={searchType} />
+				{searchLimits.map((option) => (
+					<SearchRadioButton
+						name="limit"
+						key={option}
+						label={option}
+						value={option}
+					/>
 				))}
-				{/*<SearchButton onClick={this.search} />*/}
+				<SearchButton onClick={this.search} />
 			</div>
 		);
 	}

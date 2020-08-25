@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SearchSelect = ({ name, options }) => {
+const SearchSelect = ({ name, optionsList }) => {
 	return (
 		<select name={name}>
-			{options.map((option, id) => (
+			{optionsList.map((option, id) => (
 				<option value={option} key={id}>
 					{option}
 				</option>
