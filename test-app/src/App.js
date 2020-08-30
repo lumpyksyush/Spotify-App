@@ -7,7 +7,6 @@ import TrackList from './Track/TrackList';
 import SearchForm from './SearchForm/SearchForm';
 import Header from './Header/Header';
 import { ALBUMS, ARTIST, PLAYLIST, TRACK } from './utils/mockData';
-import 'antd/dist/antd.css';
 import './App.css';
 
 const spotifyApi = new SpotifyWebApi();
