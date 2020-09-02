@@ -1,10 +1,17 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
+import AlbumList from './Albums/AlbumList';
+import ArtistList from './Artists/ArtistList';
+import Playlist from './Playlists/Playlist';
+import TrackList from './Track/TrackList';
+import SearchForm from './SearchForm/SearchForm';
+import Header from './Header/Header';
+import { ALBUMS, ARTIST, PLAYLIST, TRACK } from './utils/mockData';
+import './App.css';
 
 const spotifyApi = new SpotifyWebApi();
 
-class App extends React.Component {
+class App extends Component {
 	constructor() {
 		super();
 		const params = this.getHashParams();
@@ -14,7 +21,6 @@ class App extends React.Component {
 		}
 		this.state = {
 			loggedIn: token ? true : false,
-			nowPlaying: { name: 'Not Checked', albumArt: '' },
 		};
 	}
 	getHashParams() {
@@ -29,11 +35,18 @@ class App extends React.Component {
 		}
 		return hashParams;
 	}
-  
+
 	render() {
 		return (
 			<div className="App">
-				<a href="http://localhost:8888"> Login to Spotify </a>
+				<Header isLoggedIn={this.state.loggedIn} />
+				<main>
+					<SearchForm />
+					Artists: <ArtistList artists={ARTIST.artists} />
+					Tracks: <TrackList tracks={TRACK} />
+					Playlists: <Playlist playlists={PLAYLIST} />
+					Albums: <AlbumList albums={ALBUMS} />
+				</main>
 			</div>
 		);
 	}
